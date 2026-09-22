@@ -1,75 +1,248 @@
-# React + TypeScript + Vite
+# ERP Universitaire — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application frontend de gestion d'un système ERP universitaire.
 
-Currently, two official plugins are available:
+Ce projet est développé avec **React, Vite, TypeScript, Tailwind CSS et shadcn/ui**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Technologies
 
-## React Compiler
+* React
+* Vite
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* React Router
+* Lucide React
+* ESLint
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Structure du projet
 
-## Expanding the ESLint configuration
+```text
+src/
+├── assets/
+│   └── index.css
+│
+├── components/
+│   ├── layout/
+│   │   ├── AdminLayout.tsx
+│   │   ├── Header.tsx
+│   │   └── Sidebar.tsx
+│   │
+│   └── ui/
+│       ├── button.tsx
+│       ├── input.tsx
+│       ├── card.tsx
+│       └── ...
+│
+├── pages/
+│   ├── Login.tsx
+│   ├── Dashboard.tsx
+│   ├── Users.tsx
+│   └── Settings.tsx
+│
+├── routes/
+│   └── AppRoutes.tsx
+│
+├── lib/
+│   └── utils.ts
+│
+├── App.tsx
+└── main.tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+components.json
+package.json
+tsconfig.app.json
+tsconfig.node.json
+vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+##  Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Cloner le repository :
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone <URL_DU_REPOSITORY>
 ```
+
+Entrer dans le projet :
+
+```bash
+cd erp-univ-front
+```
+
+Installer les dépendances :
+
+```bash
+npm install
+```
+
+##  Lancer le projet
+
+Démarrer le serveur de développement :
+
+```bash
+npm run dev
+```
+
+L'application sera disponible sur :
+
+```text
+http://localhost:5173
+```
+
+##  Build
+
+Pour créer la version de production :
+
+```bash
+npm run build
+```
+
+Pour vérifier la version buildée :
+
+```bash
+npm run preview
+```
+
+##  shadcn/ui
+
+Les composants shadcn/ui sont stockés directement dans le projet.
+
+Par exemple :
+
+```text
+src/components/ui/button.tsx
+```
+
+Pour ajouter un nouveau composant :
+
+```bash
+npx shadcn@latest add button
+```
+
+Exemple d'utilisation :
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function Example() {
+  return (
+    <Button>
+      Ajouter
+    </Button>
+  )
+}
+```
+
+##  Tailwind CSS
+
+Tailwind CSS permet de construire l'interface directement avec les classes CSS.
+
+Exemple :
+
+```tsx
+<div className="flex items-center justify-between p-4">
+  <h1 className="text-2xl font-bold">
+    Dashboard
+  </h1>
+
+  <Button>
+    Ajouter
+  </Button>
+</div>
+```
+
+##  Routes
+
+Les principales routes de l'application sont organisées avec React Router.
+
+```text
+/login
+/admin
+/admin/users
+/admin/settings
+```
+
+##  Développement en équipe
+
+Avant de commencer à travailler :
+
+```bash
+git pull origin main
+```
+
+Créer une branche pour votre fonctionnalité :
+
+```bash
+git checkout -b feature/nom-fonctionnalite
+```
+
+Après avoir terminé :
+
+```bash
+git add .
+git commit -m "feat: ajouter gestion des utilisateurs"
+git push origin feature/nom-fonctionnalite
+```
+
+Ensuite, créer une **Pull Request** vers `main`.
+
+### Convention des commits
+
+Nous utilisons des messages de commit simples et explicites :
+
+```text
+feat: nouvelle fonctionnalité
+fix: correction d'un bug
+refactor: amélioration du code
+style: modification du style
+docs: modification de la documentation
+chore: configuration ou dépendances
+```
+
+Exemples :
+
+```bash
+git commit -m "feat: ajouter page dashboard"
+git commit -m "fix: corriger formulaire de connexion"
+git commit -m "style: améliorer sidebar"
+```
+
+##  Règles de développement
+
+* Ne pas travailler directement sur `main`.
+* Créer une branche pour chaque fonctionnalité.
+* Faire des commits clairs.
+* Tester le projet avant de faire une Pull Request.
+* Ne pas pousser les fichiers `.env`.
+* Respecter la structure du projet.
+* Réutiliser les composants shadcn/ui lorsque cela est possible.
+
+##  Variables d'environnement
+
+Les variables sensibles doivent être placées dans un fichier `.env`.
+
+Exemple :
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+Ne jamais pousser le fichier `.env` sur GitHub.
+
+Utiliser plutôt :
+
+```text
+.env.example
+```
+
+Exemple :
+
+```env
+VITE_API_URL=
+```
+
+##  Licence
+
+Projet team Lavotondro — EMIT / Université de Fianarantsoa.
+
